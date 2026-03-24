@@ -123,7 +123,8 @@ Continue from the highest-value remaining starter work:
 - Avoid adding more sample chains unless they introduce a genuinely new workflow shape beyond the existing feature, bugfix, migration, pilot, and Java microservice/internal-system coverage.
 
 ## Notes for the next session
-- This repository is now tracked in git with `main` and `develop` branches.
+- This worktree is the dedicated `release/v2.0.0` line at `~/ai-rd-team-v2.0.0`; keep V2.0.0 positioning, release-facing wording, and traceability/spec-change-control refinements here only.
+- Preserve worktree isolation: do not let generic starter work drift into this V2.0.0 worktree if it belongs on `~/ai-rd-team` / `develop`, and do not copy V2.0.0-only positioning back into `develop` by accident.
 - Existing hook validation by `jq` was previously blocked because `jq` is not installed in the environment.
 - Hook behavior was later validated with Python-based checks, and `.claude/settings.json` is parseable.
 - Prioritize reusable docs and safe quality automation before adding more workflow complexity.
