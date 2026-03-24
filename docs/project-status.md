@@ -104,7 +104,8 @@
 - Production/release-like Bash commands are flagged for human confirmation.
 - High-risk edit paths such as auth/payments/billing/orders/db/migrations/sql are flagged for stronger review context.
 - Post-edit reminders ask for self-check, impact summary, test status, and follow-up risk notes.
-- The repository is not currently a git repository.
+- This repository is now tracked in git with `main` and `develop` branches for starter maintenance.
+- The V2.0.0 line is intentionally isolated in a dedicated worktree at `~/ai-rd-team-v2.0.0` on `release/v2.0.0` to avoid cross-branch contamination between reusable starter work and V2.0.0-only release positioning.
 
 ## What is still missing
 
@@ -125,7 +126,8 @@
 1. Keep this repo technology-agnostic and process-first.
 2. Add CI only for lint / typecheck / test / security-style checks, never for direct production deploy.
 3. Validate the new reviewer-policy and security-style-check guidance against future adopted-repo feedback before expanding it further.
-4. Keep adopted-repo guidance and platform templates aligned with future real-adoption findings.
+4. Preserve worktree isolation: land reusable starter refinements on `develop`, and keep V2.0.0-only positioning / release-language changes inside `~/ai-rd-team-v2.0.0` on `release/v2.0.0`.
+5. Keep adopted-repo guidance and platform templates aligned with future real-adoption findings.
 
 ## Constraints and guardrails
 - Do not add automation that can deploy or change production directly.
