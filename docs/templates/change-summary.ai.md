@@ -10,6 +10,14 @@
 ## Summary
 {{one_paragraph_summary}}
 
+## Traceability
+- Requirement intake: {{requirement_intake_path_or_id}}
+- PRD: {{prd_path_or_id}}
+- Design: {{design_path_or_id}}
+- Test plan: {{test_plan_path_or_id}}
+- PR / MR: {{pr_or_mr_link_or_id}}
+- Primary tracker / external reference: {{tracker_or_reference_or_none}}
+
 ## Confirmed Facts
 - {{fact_1}}
 - {{fact_2}}
@@ -47,6 +55,13 @@
 - Not yet validated:
   - {{gap_1_or_none}}
 
+## Spec Change Control
+- Does this change alter intended behavior or scope? {{yes|no}}
+- Upstream artifact updated first: {{requirement|prd|design|test_plan|none}}
+- Remaining artifacts to sync:
+  - {{artifact_gap_1_or_none}}
+  - {{artifact_gap_2_or_none}}
+
 ## Rollback Summary
 - Rollback available: {{yes|no}}
 - Rollback reference:
@@ -70,7 +85,9 @@
 - To: QA/Security Agent / Release/SRE Agent
 - Goal: 复用本摘要做测试聚焦与发布准备
 - Must Read:
+  - Traceability
   - Technical Change
+  - Spec Change Control
   - Risk Summary
   - Validation Summary
   - Rollback Summary

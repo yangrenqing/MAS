@@ -40,6 +40,7 @@ docs/
   starter-adoption-checklist.md
   afternoon-pilot-guide.md
   quality-gates.md
+  sdd-v2.0.0-positioning.md
   integrations/
     github.md
     gitlab.md
@@ -159,6 +160,7 @@ ops/
 - `docs/starter-adoption-checklist.md`：把这套 starter 迁移到新仓库时的最小接入清单
 - `docs/adopted-repo-guide.md`：说明 adopted repo 中的文档落位、owner 映射、高风险路径调优、reviewer-policy baseline 与 security-style-check rollout
 - `docs/afternoon-pilot-guide.md`：指导首次在半天内试跑一遍 starter
+- `docs/sdd-v2.0.0-positioning.md`：说明这个 starter 在 V2.0.0 语境下的 SDD 定位、优势、缺口与下一步成熟路径
 
 ### 5. 外部系统集成说明
 位于 `docs/integrations/`。
@@ -209,13 +211,14 @@ ops/
 3. 根据项目技术栈和组织方式微调。
 
 ## 方式二：直接在这个目录继续扩展
-1. 在本目录下继续补充：
+1. 在本目录下继续补充通用 starter 资产：
    - `docs/templates/*.md`
    - `docs/integrations/*.md`
    - `examples/*`
    - `ops/runbooks/*.md`
    - `.github/workflows/*.yml` 或 `.gitlab-ci.yml`
 2. 把这里作为 AI 研发流程的母版项目。
+3. 真实业务实现请放到 adopted repo 中验证，再把可复用经验回填到这个 starter。
 
 ## 建议工作流
 
@@ -293,6 +296,7 @@ Claude Code 会自动识别 `.claude/agents/` 下的自定义 agents，**不需�
 10. adopted repo 落地指南：`docs/adopted-repo-guide.md`
 11. 端到端样例：`examples/*`
 12. 可选本地 workflow 示例：`examples/sample-github-actions-local-quality.yml`、`examples/sample-gitlab-ci-local-quality.yml`
+13. V2.0.0 SDD 定位文档：`docs/sdd-v2.0.0-positioning.md`
 
 ## 推荐阅读顺序
 
@@ -312,6 +316,7 @@ Claude Code 会自动识别 `.claude/agents/` 下的自定义 agents，**不需�
 13. `docs/starter-adoption-checklist.md`
 14. `.claude/settings.json`
 15. `docs/sop/requirement-to-release.md`
+16. `docs/sdd-v2.0.0-positioning.md`
 
 ## Prompt / 模板使用规则
 
@@ -353,5 +358,5 @@ Claude Code 会自动识别 `.claude/agents/` 下的自定义 agents，**不需�
 1. 先读 `docs/project-status.md` 和 `docs/session-handoff.md`，确认当前最高优先级
 2. 在真实 adopted repo 中验证 reviewer-policy 与 security-style-check guidance 是否足够
 3. 只在真实 adoption 暴露具体缺口时，再继续细化 `docs/adopted-repo-guide.md`、GitHub / GitLab 模板或 integration/backlink guidance
-4. 视技术栈把 placeholder CI 替换成真实 lint / typecheck / test / security-style checks，但不要加入 staging / production deploy
+4. 视技术栈把 adopted repo 里的 placeholder CI 替换成真实 lint / typecheck / test / security-style checks，但不要加入 staging / production deploy
 5. 把后续真实 adoption 反馈回填到 `docs/project-status.md`、`docs/session-handoff.md` 和相关 examples

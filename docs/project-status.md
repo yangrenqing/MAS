@@ -4,6 +4,7 @@
 - This repository is the starter kit for an AI-native R&D team.
 - It is intended to be reused across projects as a template repo / pilot baseline.
 - It currently focuses on process scaffolding, agent prompts, templates, quality gates, integration guidance, and safe operational guardrails rather than product-specific code.
+- Real product implementations should be built and validated in adopted repos, then only the reusable lessons should be fed back here.
 
 ## Current Completion
 
@@ -44,6 +45,7 @@
   - `docs/starter-adoption-checklist.md`
   - `docs/adopted-repo-guide.md`
   - `docs/afternoon-pilot-guide.md`
+  - `docs/sdd-v2.0.0-positioning.md`
 - Integration guides:
   - `docs/integrations/github.md`
   - `docs/integrations/gitlab.md`
@@ -104,17 +106,22 @@
 - Production/release-like Bash commands are flagged for human confirmation.
 - High-risk edit paths such as auth/payments/billing/orders/db/migrations/sql are flagged for stronger review context.
 - Post-edit reminders ask for self-check, impact summary, test status, and follow-up risk notes.
-- The repository is not currently a git repository.
+- This repository is now tracked in git with `main` and `develop` branches for starter maintenance.
 
 ## What is still missing
 
 ### High-priority missing pieces
 - Validate and tune the new reviewer-policy and security-style-check guidance after more adopted-repo feedback appears
+- Validate the new V2.0.0 traceability / spec-change-control expectations in at least one real adopted repo
+- Decide which traceability fields should remain template-only and which should become PR / MR / CI enforced defaults
 
 ### Recently refined
 - `docs/adopted-repo-guide.md` now includes a concrete minimum reviewer-policy baseline for adopted repos, including small-team fallback and explicit statements that CI, hooks, and AI-generated artifacts do not replace human review.
 - `docs/adopted-repo-guide.md` now includes a safer rollout model for security-style checks, clarifying when they belong in manual, nightly, or default PR gates.
 - `docs/starter-adoption-checklist.md` now includes explicit checklist items for reviewer scope, extra review expectations, and safe security-style-check rollout.
+- `docs/sdd-v2.0.0-positioning.md` now makes the repo's SDD boundary explicit: this is an AI R&D starter / operating system that is SDD-capable and SDD-oriented, but not pretending to be a fully closed-loop product repo by itself.
+- GitHub / GitLab PR/MR templates now ask for traceability links plus spec change-control notes, making Requirement -> PRD -> Design -> Test / Release references easier to recover.
+- `docs/templates/change-summary.ai.md`, `docs/templates/release-checklist.ai.md`, and `docs/quality-gates.md` now surface stronger traceability and behavior-change sync expectations.
 
 
 ### Medium-priority missing pieces
@@ -125,7 +132,8 @@
 1. Keep this repo technology-agnostic and process-first.
 2. Add CI only for lint / typecheck / test / security-style checks, never for direct production deploy.
 3. Validate the new reviewer-policy and security-style-check guidance against future adopted-repo feedback before expanding it further.
-4. Keep adopted-repo guidance and platform templates aligned with future real-adoption findings.
+4. Validate the V2.0.0 traceability / spec-change-control fields in one real adopted repo before turning them into stricter defaults.
+5. Keep adopted-repo guidance and platform templates aligned with future real-adoption findings.
 
 ## Constraints and guardrails
 - Do not add automation that can deploy or change production directly.

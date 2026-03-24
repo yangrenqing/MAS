@@ -19,6 +19,8 @@
 4. 所有 agent 输出必须包含 `Need Human Decision` 和 `Next Handoff`。
 5. 生产相关动作必须保留人工确认点。
 6. 不能以自动化为理由绕过质量门禁。
+7. Requirement / PRD / design / test / release 之间的追踪关系必须可恢复，不应只靠口头上下文。
+8. 当变更影响行为、范围或 release 风险时，应先或同步更新上游规格，再推进实现与发布准备。
 
 ## Gate 1: Requirement Quality
 进入技术方案前必须满足：
@@ -108,3 +110,5 @@
 - 风险与已知缺口
 - 人工决策点
 - 下一步交接对象
+- 上游 / 下游关联工件（例如 requirement、PRD、design、test plan、release artifacts）
+- 若发生规格变更，对应的 change-control 记录或同步说明

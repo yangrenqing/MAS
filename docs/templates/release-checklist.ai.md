@@ -22,6 +22,12 @@
 - PR / MR:
   - {{pr_1}}
   - {{pr_2}}
+- Requirement / PRD / Design:
+  - {{requirement_or_prd_or_design_ref_1}}
+  - {{requirement_or_prd_or_design_ref_2_or_none}}
+- Test Plan / Change Summary:
+  - {{test_plan_ref}}
+  - {{change_summary_ref_or_none}}
 - Test Result:
   - {{test_result_summary}}
 - Risk Level:
@@ -46,6 +52,8 @@
 - [ ] Integration tests passed
 - [ ] Critical path verified
 - [ ] Security checks passed
+- [ ] Requirement / PRD / Design / Test references recoverable
+- [ ] Behavior-changing scope has matching spec-update or change-control note
 
 ### Operational Readiness
 - [ ] Monitoring dashboard ready
