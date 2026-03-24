@@ -1,0 +1,37 @@
+stages:
+  - quality
+  - review
+
+variables:
+  STARTER_NOTE: "Replace placeholder commands after adopting this starter into a real repo."
+
+local_quality:
+  stage: quality
+  image: alpine:3.20
+  script:
+    - echo "$STARTER_NOTE"
+    - echo "Keep this example limited to repo-local quality checks."
+    - echo "Do not add automatic staging or production deploy steps here."
+    - echo "TODO: replace with runtime setup for your stack"
+    - echo "TODO: replace with lint command"
+    - echo "Examples: pnpm lint / npm run lint / uv run ruff check ."
+    - echo "TODO: replace with typecheck command if applicable"
+    - echo "Examples: pnpm typecheck / npm run typecheck / mypy ."
+    - echo "TODO: replace with test command"
+    - echo "Examples: pnpm test / npm test / pytest"
+    - echo "TODO: replace with dependency or static security checks if needed"
+    - echo "Examples: pip-audit / npm audit --production / semgrep --config auto"
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_PIPELINE_SOURCE == "push"'
+
+release_guardrail_note:
+  stage: review
+  image: alpine:3.20
+  script:
+    - echo "Before release, attach rollback reference, risk summary, and release checklist link."
+    - echo "Keep protected-branch merge, production jobs, canary decisions, and rollback as manual approvals."
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+  when: manual
+  allow_failure: true

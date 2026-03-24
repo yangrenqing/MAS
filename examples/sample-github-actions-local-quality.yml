@@ -1,0 +1,49 @@
+name: Local Quality Example
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  local-quality:
+    name: Local quality checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Explain intended use
+        run: |
+          echo "This is an optional example workflow for adopted repositories."
+          echo "Keep it limited to repo-local quality checks and documentation reminders."
+          echo "Do not add staging or production deploy steps here."
+
+      - name: Setup runtime
+        run: |
+          echo "TODO: replace with your project runtime setup"
+          echo "Examples: actions/setup-node / actions/setup-python / actions/setup-go"
+
+      - name: Lint
+        run: |
+          echo "TODO: replace with your lint command"
+          echo "Examples: npm run lint / pnpm lint / uv run ruff check ."
+
+      - name: Typecheck
+        run: |
+          echo "TODO: replace with your typecheck command if applicable"
+          echo "Examples: npm run typecheck / pnpm typecheck / mypy ."
+
+      - name: Tests
+        run: |
+          echo "TODO: replace with your test command"
+          echo "Examples: npm test / pnpm test / pytest"
+
+      - name: Security-style checks
+        run: |
+          echo "TODO: replace with dependency or static security checks if needed"
+          echo "Examples: npm audit --production / pip-audit / semgrep --config auto"
+
+      - name: Human-gated release reminder
+        run: |
+          echo "If this change needs release prep, link the release checklist and rollback plan in the PR."
+          echo "Keep merge, release, canary, and rollback as human-approved actions."

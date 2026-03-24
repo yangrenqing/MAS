@@ -1,0 +1,102 @@
+name: Bug report
+description: Capture a defect with release impact, risk, and validation context
+title: "[Bug] "
+labels: ["type:bug", "stage:intake"]
+body:
+  - type: input
+    id: bug_id
+    attributes:
+      label: Bug / Requirement ID
+      placeholder: BUG-2026-001 or TBD
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      placeholder: Magic link verify succeeds for expired token in edge case X
+    validations:
+      required: true
+
+  - type: textarea
+    id: current_behavior
+    attributes:
+      label: Current behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected_behavior
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+      placeholder: |
+        1. Open ...
+        2. Submit ...
+        3. Observe ...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      options:
+        - P0
+        - P1
+        - P2
+        - P3
+    validations:
+      required: true
+
+  - type: dropdown
+    id: risk_level
+    attributes:
+      label: Risk level
+      options:
+        - risk:low
+        - risk:medium
+        - risk:high
+    validations:
+      required: true
+
+  - type: textarea
+    id: impacted_area
+    attributes:
+      label: Impacted modules / flows
+      placeholder: |
+        - auth-service
+        - web-login-ui
+        - login critical path
+
+  - type: textarea
+    id: release_impact
+    attributes:
+      label: Release impact
+      placeholder: |
+        - Blocks release: yes/no
+        - Rollback needed: yes/no
+        - Workaround: ...
+
+  - type: textarea
+    id: human_decision
+    attributes:
+      label: Need Human Decision
+      placeholder: |
+        - Is this severity truly blocker?
+        - Hold release or patch forward?
+
+  - type: textarea
+    id: handoff
+    attributes:
+      label: Next Handoff
+      placeholder: |
+        To: Developer Agent / QA-Security Agent
+        Goal: Reproduce, fix, validate, and assess release risk

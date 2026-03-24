@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "model": "sonnet",
+  "includeGitInstructions": true,
+  "respectGitignore": true,
+  "defaultShell": "bash",
+  "autoMemoryEnabled": true,
+  "plansDirectory": ".claude/plans",
+  "permissions": {
+    "defaultMode": "default",
+    "disableBypassPermissionsMode": "disable",
+    "allow": [
+      "Read",
+      "Grep",
+      "Glob",
+      "Agent"
+    ],
+    "ask": [
+      "WebFetch",
+      "WebSearch",
+      "Bash(git push:*)",
+      "Bash(gh pr create:*)",
+      "Bash(npm publish:*)",
+      "Bash(pnpm publish:*)",
+      "Bash(yarn publish:*)",
+      "Bash(uv publish:*)"
+    ],
+    "deny": [
+      "Bash(rm -rf:*)",
+      "Bash(sudo:*)",
+      "Bash(git push --force:*)",
+      "Bash(git reset --hard:*)",
+      "Bash(docker system prune:*)"
+    ]
+  },
+  "env": {
+    "AI_TEAM_MODE": "enabled",
+    "AI_RELEASE_REQUIRES_HUMAN": "true"
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 -c 'import json,re,sys; data=json.load(sys.stdin); cmd=(data.get(\"tool_input\",{}).get(\"command\",\"\") or \"\"); lower=cmd.lower(); patterns=[r\"\\bdeploy(?:ment)?\\b\", r\"\\brelease\\b\", r\"\\bproduction\\b\", r\"\\bprod\\b\", r\"\\bkubectl\\s+apply\\b\", r\"\\bterraform\\s+apply\\b\", r\"\\bhelm\\s+upgrade\\b\"]; risky=any(re.search(p, lower) for p in patterns); out={\"hookSpecificOutput\":{\"hookEventName\":\"PreToolUse\"}};\nif risky:\n out[\"hookSpecificOutput\"][\"permissionDecision\"]=\"ask\"; out[\"hookSpecificOutput\"][\"permissionDecisionReason\"]=\"Detected production or release-related Bash command. Require human confirmation before execution.\"; out[\"systemMessage\"]=\"Production/release-related Bash command detected. Confirm intent before proceeding.\";\nprint(json.dumps(out))' 2>/dev/null || true",
+            "timeout": 10,
+            "statusMessage": "Reviewing Bash risk"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 -c 'import json,re,sys; data=json.load(sys.stdin); path=(data.get(\"tool_input\",{}).get(\"file_path\",\"\") or \"\"); lower=path.lower(); patterns=[r\"(^|/)auth(/|$)\", r\"(^|/)payments?(/|$)\", r\"(^|/)billing(/|$)\", r\"(^|/)orders?(/|$)\", r\"(^|/)db(/|$)\", r\"(^|/)migrations?(/|$)\", r\"(^|/)sql(/|$)\"]; risky=any(re.search(p, lower) for p in patterns); out={\"hookSpecificOutput\":{\"hookEventName\":\"PreToolUse\"}};\nif risky:\n out[\"systemMessage\"]=\"High-risk edit path detected. Keep manual review, rollback readiness, and explicit test notes in mind.\"; out[\"hookSpecificOutput\"][\"additionalContext\"]=\"This edit touches a high-risk path such as auth, payments, billing, orders, db, or migrations. Prefer manual review and capture rollback/test impact explicitly.\";\nprint(json.dumps(out))' 2>/dev/null || true",
+            "timeout": 10,
+            "statusMessage": "Reviewing edit risk"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 -c 'import json,sys; data=json.load(sys.stdin); tool=(data.get(\"tool_name\") or \"file change\"); out={\"hookSpecificOutput\":{\"hookEventName\":\"PostToolUse\",\"additionalContext\":\"After Write/Edit, record a brief self-check: what changed, affected scope, whether tests were run or not run, and any follow-up risk or rollback note.\"},\"systemMessage\":f\"{tool} completed. Capture self-check, affected scope, and test status.\"}; print(json.dumps(out))' 2>/dev/null || true",
+            "timeout": 10,
+            "statusMessage": "Adding self-check reminder"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": []
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": []
+      }
+    ]
+  }
+}

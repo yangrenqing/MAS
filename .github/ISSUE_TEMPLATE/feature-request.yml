@@ -1,0 +1,109 @@
+name: Feature request
+description: Capture a new requirement for the AI R&D starter workflow
+title: "[Feature] "
+labels: ["type:feature", "stage:intake"]
+body:
+  - type: input
+    id: requirement_id
+    attributes:
+      label: Requirement ID
+      description: Use a stable ID if one already exists
+      placeholder: REQ-2026-001 or TBD
+    validations:
+      required: true
+
+  - type: input
+    id: summary
+    attributes:
+      label: One-line summary
+      placeholder: Add magic link login for existing users
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem to solve
+      description: What pain or opportunity is driving this work?
+      placeholder: Returning users forget passwords and abandon login.
+    validations:
+      required: true
+
+  - type: textarea
+    id: goals
+    attributes:
+      label: Goals
+      description: Business and user goals
+      placeholder: |
+        - Reduce login friction
+        - Reduce password reset support tickets
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: In scope
+      placeholder: |
+        - New web login option
+        - Email magic link send + verify
+    validations:
+      required: true
+
+  - type: textarea
+    id: out_of_scope
+    attributes:
+      label: Out of scope
+      placeholder: |
+        - SMS login
+        - Mobile app support
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance criteria
+      description: Clear release gate for PRD and implementation
+      placeholder: |
+        - [ ] Existing verified users can request a magic link
+        - [ ] Link expires and is single-use
+    validations:
+      required: true
+
+  - type: dropdown
+    id: risk_level
+    attributes:
+      label: Risk level
+      options:
+        - risk:low
+        - risk:medium
+        - risk:high
+    validations:
+      required: true
+
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies and constraints
+      placeholder: |
+        - Email service availability
+        - Security review required
+
+  - type: textarea
+    id: human_decision
+    attributes:
+      label: Need Human Decision
+      description: List anything AI agents should not assume
+      placeholder: |
+        - Should first release use canary?
+        - What rollout scope is acceptable?
+
+  - type: textarea
+    id: handoff
+    attributes:
+      label: Next Handoff
+      description: Who should take this next?
+      placeholder: |
+        To: PRD Agent
+        Goal: Turn this requirement into a structured PRD

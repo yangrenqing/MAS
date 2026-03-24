@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  quality-checks:
+    name: Quality checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Explain starter behavior
+        run: |
+          echo "This starter intentionally ships a non-deploy CI skeleton."
+          echo "Replace the placeholders below with repo-specific commands."
+
+      - name: Placeholder lint
+        run: |
+          echo "TODO: replace with your lint command"
+          echo "Examples: npm run lint / pnpm lint / uv run ruff check ."
+
+      - name: Placeholder typecheck
+        run: |
+          echo "TODO: replace with your typecheck command if applicable"
+          echo "Examples: npm run typecheck / pnpm typecheck / mypy ."
+
+      - name: Placeholder tests
+        run: |
+          echo "TODO: replace with your test command"
+          echo "Examples: npm test / pnpm test / pytest"
+
+      - name: Placeholder security checks
+        run: |
+          echo "TODO: replace with dependency or static security checks if needed"
+          echo "Examples: npm audit --production / pip-audit / semgrep --config auto"
+
+      - name: Guardrail reminder
+        run: |
+          echo "No staging or production deployment steps belong in this workflow."
+          echo "Keep release, canary, rollback, and production approval as human-gated actions."
