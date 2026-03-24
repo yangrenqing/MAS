@@ -119,6 +119,7 @@ Continue from the highest-value remaining starter work:
 ## Notes for the next session
 - This repo is now tracked in git on `develop`, and the V2.0.0 line is isolated in a separate worktree at `~/ai-rd-team-v2.0.0` on `release/v2.0.0`; keep reusable starter work on `develop` and keep V2.0.0-only positioning / release refinements inside the dedicated worktree.
 - Preserve worktree isolation: do not let `develop` absorb V2.0.0-specific positioning/material by accident, and do not mutate the V2.0.0 worktree with generic starter changes that belong back on `develop` first.
+- Hourly internal upgrade check on 2026-03-25 found this worktree clean on `develop` with no pending local changes; safest action remains to wait for real adopted-repo feedback before widening reviewer-policy, security-style-check, or integration/backlink guidance.
 - Existing hook validation by `jq` was previously blocked because `jq` is not installed in the environment.
 - JSON in `.claude/settings.json` was successfully read back, so the settings file is currently parseable.
 - Prioritize reusable docs and safe quality automation before adding more workflow complexity.
